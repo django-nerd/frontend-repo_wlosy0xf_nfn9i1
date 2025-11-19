@@ -33,13 +33,16 @@ function RestaurantList({ onSelect }) {
         <button
           key={r.id}
           onClick={() => onSelect(r)}
-          className="text-left bg-white rounded-xl shadow hover:shadow-md transition p-4 border border-slate-100"
+          className="text-left bg-white/70 backdrop-blur-md rounded-xl shadow hover:shadow-lg transition p-4 border border-white/40 hover:border-white/60"
         >
-          <img src={r.image || 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80&auto=format&fit=crop'} alt={r.name} className="h-40 w-full object-cover rounded-lg" />
+          <div className="relative">
+            <img src={r.image || 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80&auto=format&fit=crop'} alt={r.name} className="h-40 w-full object-cover rounded-lg" />
+            <div className="absolute inset-0 rounded-lg ring-1 ring-black/5" />
+          </div>
           <div className="mt-3">
-            <h3 className="font-semibold text-slate-900">{r.name}</h3>
-            <p className="text-sm text-slate-600">{r.cuisine} • ~{r.avg_prep_minutes} min prep</p>
-            <p className="text-xs text-slate-500">{r.address}</p>
+            <h3 className="font-semibold text-slate-900/90">{r.name}</h3>
+            <p className="text-sm text-slate-700/80">{r.cuisine} • ~{r.avg_prep_minutes} min prep</p>
+            <p className="text-xs text-slate-600/80">{r.address}</p>
           </div>
         </button>
       ))}

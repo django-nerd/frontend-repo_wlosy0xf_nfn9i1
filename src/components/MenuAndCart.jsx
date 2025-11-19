@@ -84,17 +84,22 @@ function MenuAndCart({ restaurant, onOrderPlaced }) {
         <h3 className="text-lg font-semibold">Menu</h3>
         <div className="grid sm:grid-cols-2 gap-4">
           {menu.map(item => (
-            <div key={item.id} className="bg-white rounded-xl border border-slate-100 p-4 shadow">
-              {item.image && <img src={item.image} alt={item.name} className="h-36 w-full object-cover rounded" />}
+            <div key={item.id} className="bg-white/70 backdrop-blur rounded-xl border border-white/40 p-4 shadow">
+              {item.image && (
+                <div className="relative">
+                  <img src={item.image} alt={item.name} className="h-36 w-full object-cover rounded" />
+                  <div className="absolute inset-0 rounded ring-1 ring-black/5" />
+                </div>
+              )}
               <div className="mt-2">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-medium">{item.name}</h4>
-                  <span className="text-slate-700">${item.price.toFixed(2)}</span>
+                  <h4 className="font-medium text-slate-900/90">{item.name}</h4>
+                  <span className="text-slate-800/90">${item.price.toFixed(2)}</span>
                 </div>
-                <p className="text-sm text-slate-600 line-clamp-2">{item.description}</p>
+                <p className="text-sm text-slate-700/80 line-clamp-2">{item.description}</p>
                 <div className="mt-3 flex gap-2">
-                  <button onClick={() => removeItem(item)} className="px-3 py-1 rounded bg-slate-100">-</button>
-                  <button onClick={() => addItem(item)} className="px-3 py-1 rounded bg-blue-600 text-white">Add</button>
+                  <button onClick={() => removeItem(item)} className="px-3 py-1 rounded bg-white/60 border border-white/50">-</button>
+                  <button onClick={() => addItem(item)} className="px-3 py-1 rounded bg-blue-600/90 hover:bg-blue-600 text-white shadow-sm">Add</button>
                 </div>
               </div>
             </div>
@@ -106,27 +111,27 @@ function MenuAndCart({ restaurant, onOrderPlaced }) {
       </div>
 
       <div className="lg:col-span-1">
-        <div className="bg-white rounded-xl border border-slate-100 p-4 shadow">
+        <div className="bg-white/70 backdrop-blur rounded-xl border border-white/40 p-4 shadow">
           <h3 className="text-lg font-semibold mb-3">Your Visit</h3>
           <div className="space-y-2">
-            <input value={customer.name} onChange={e => setCustomer(c => ({...c, name: e.target.value}))} placeholder="Your name" className="w-full border rounded px-3 py-2" />
-            <input value={customer.phone} onChange={e => setCustomer(c => ({...c, phone: e.target.value}))} placeholder="Phone number" className="w-full border rounded px-3 py-2" />
-            <input type="datetime-local" value={dineInTime} onChange={e => setDineInTime(e.target.value)} className="w-full border rounded px-3 py-2" />
+            <input value={customer.name} onChange={e => setCustomer(c => ({...c, name: e.target.value}))} placeholder="Your name" className="w-full border border-white/50 bg-white/60 backdrop-blur rounded px-3 py-2 placeholder:text-slate-500" />
+            <input value={customer.phone} onChange={e => setCustomer(c => ({...c, phone: e.target.value}))} placeholder="Phone number" className="w-full border border-white/50 bg-white/60 backdrop-blur rounded px-3 py-2 placeholder:text-slate-500" />
+            <input type="datetime-local" value={dineInTime} onChange={e => setDineInTime(e.target.value)} className="w-full border border-white/50 bg-white/60 backdrop-blur rounded px-3 py-2" />
           </div>
 
           <h3 className="text-lg font-semibold mt-6">Cart</h3>
-          <div className="divide-y">
+          <div className="divide-y divide-white/50">
             {cartDetails.lines.map(l => (
               <div key={l.id} className="py-2 flex items-center justify-between">
                 <div>
-                  <p className="font-medium">{l.name}</p>
-                  <p className="text-xs text-slate-500">x{l.qty}</p>
+                  <p className="font-medium text-slate-900/90">{l.name}</p>
+                  <p className="text-xs text-slate-600/80">x{l.qty}</p>
                 </div>
-                <div className="text-slate-700">${l.lineTotal.toFixed(2)}</div>
+                <div className="text-slate-800/90">${l.lineTotal.toFixed(2)}</div>
               </div>
             ))}
             {cartDetails.lines.length === 0 && (
-              <p className="text-slate-500 py-2">Your cart is empty.</p>
+              <p className="text-slate-600/80 py-2">Your cart is empty.</p>
             )}
           </div>
 
@@ -137,7 +142,7 @@ function MenuAndCart({ restaurant, onOrderPlaced }) {
 
           {message && <p className="text-sm text-red-600 mt-2">{message}</p>}
 
-          <button disabled={placing} onClick={placeOrder} className="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 rounded disabled:opacity-50">
+          <button disabled={placing} onClick={placeOrder} className="mt-4 w-full bg-emerald-600/90 hover:bg-emerald-600 text-white font-semibold py-2 rounded disabled:opacity-50 shadow">
             {placing ? 'Placing…' : 'Place Order'}
           </button>
         </div>

@@ -25,7 +25,7 @@ function App() {
           <>
             <div className="mb-8 text-center">
               <h2 className="text-3xl font-bold tracking-tight text-slate-900">Book Your Meal, Dine In On Time</h2>
-              <p className="text-slate-600 mt-2">Choose a place, pre-order your food, and walk in when its ready.</p>
+              <p className="text-slate-600 mt-2">Choose a place, pre-order your food, and walk in when it's ready.</p>
             </div>
             <RestaurantList onSelect={setSelectedRestaurant} />
           </>
@@ -46,9 +46,9 @@ function App() {
         )}
 
         {orderConfirmation && (
-          <div className="max-w-md mx-auto bg-white rounded-xl border border-slate-100 shadow p-6 text-center">
+          <div className="max-w-md mx-auto bg-white/70 backdrop-blur rounded-xl border border-white/40 shadow p-6 text-center">
             <h3 className="text-2xl font-bold">Order Confirmed</h3>
-            <p className="text-slate-600 mt-2">Your order ID is <span className="font-mono">{orderConfirmation.orderId}</span></p>
+            <p className="text-slate-700/90 mt-2">Your order ID is <span className="font-mono">{orderConfirmation.orderId}</span></p>
             <p className="mt-1">Total: <span className="font-semibold">${orderConfirmation.total.toFixed(2)}</span></p>
             <p className="mt-1">Estimated prep time: <span className="font-semibold">~{orderConfirmation.eta} minutes</span></p>
             <a href="/" className="mt-6 inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded">Place another order</a>
